@@ -7,7 +7,7 @@ class ListNode(object):
     """
     def __init__(self, x):
         self.val = x
-        self.next = None
+        self.next = None  # for unknown next ptr, set it to None
 
 
 
@@ -16,8 +16,8 @@ class Solution(object):
     dd
     """
     def oddEvenList(self, head):
-        """
-        :type head: ListNode
+        """ Process the head of the target linked list
+        :type head: ListNode, pointing to the head of the processed linked list
         :rtype: ListNode
         """
         odd = head
@@ -27,10 +27,10 @@ class Solution(object):
             return head
         even_head = even = head.next
         while odd.next is not None and even.next is not None:
-            odd.next = even.next
-            odd = odd.next
-            even.next = odd.next
-            even = even.next
+            odd.next = even.next # the new come even.next is a odd, so can be the odd next for the odd to be
+            odd = odd.next  # update odd to be
+            even.next = odd.next # the new come odd.next is a even
+            even = even.next  # update even
         odd.next = even_head
         return head
 
@@ -46,11 +46,12 @@ class Solution(object):
     #     x.append(head.val)
     #     return x[0::2] + x[1::2]
 
+# below two funcs are all for feeding test data correctly and arange the output in list correctly
 def create_linked_list(arr):
     dummy = ListNode(0)
     ptr = dummy
     for num in arr:
-        ptr.next = ListNode(num)
+        ptr.next = ListNode(num)  # create linked node for each coming .next
         ptr = ptr.next
     return dummy.next
 
