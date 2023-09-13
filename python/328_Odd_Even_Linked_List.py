@@ -10,7 +10,8 @@ class ListNode(object):
         self.next = None  # for unknown next ptr, set it to None
 
 
-
+# using LinkedList space complexity is O(1), fixed
+# if using two list to hold odd and even, space complexity is O(n)
 class Solution(object):
     """
     dd
@@ -31,7 +32,7 @@ class Solution(object):
             odd = odd.next  # update odd to be
             even.next = odd.next # the new come odd.next is a even
             even = even.next  # update even
-        odd.next = even_head
+        odd.next = even_head  # end of the odd, link to the even head
         return head
 
     # def oddEvenList(self, head):
