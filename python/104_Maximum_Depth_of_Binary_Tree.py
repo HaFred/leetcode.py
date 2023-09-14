@@ -40,21 +40,37 @@ import unittest
 #                 stack.append((cur_depth + 1, root.right))
 #         return depth
     
+from collections import deque
 
 # iterative BFS, need a FIFO to do the breadth, thus queue
 # can also do a deque version as in https://github.com/neetcode-gh/leetcode/blob/ec5ef95c2d42eca117a854d070fa122649f2647a/python/0104-maximum-depth-of-binary-tree.py#L27
 class Solution:
+    # def maxDepth(self, root):
+    #     queue = []
+    #     depth = 0
+    #     if root is not None:
+    #         queue.append((1, root))
+    #     while queue != []:
+    #         cur_depth, root = queue.pop(0)
+    #         if root is not None:  # if root is None, meaning that there is no children node, thus depth should not be updated with the below line
+    #             depth = max(depth, cur_depth)
+    #             queue.append((cur_depth +1, root.left))
+    #             queue.append((cur_depth +1, root.right))
+    #     return depth
+
     def maxDepth(self, root):
-        queue = []
+        queue = deque()
         depth = 0
-        if root is not None:
-            queue.append((1, root))
-        while queue != []:
-            cur_depth, root = queue.pop(0)
-            if root is not None:  # if root is None, meaning that there is no children node, thus depth should not be updated with the below line
-                depth = max(depth, cur_depth)
-                queue.append((cur_depth +1, root.left))
-                queue.append((cur_depth +1, root.right))
+        if root:
+            queue.append(root)
+        while queue:
+            for i in range(len(queue)):  # need to pop out all the nodes in current level of the queue, before adding depth
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            depth += 1
         return depth
     
 def create_binary_tree(arr):
