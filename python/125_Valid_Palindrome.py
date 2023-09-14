@@ -15,6 +15,16 @@ class Solution:
             if alnum_s[i] != alnum_s[ls - 1 - i]:  # check if palindrome
                 return False
         return True
+    
+# # same
+#     def isPalindrome(self, s: str) -> bool:
+#         alnum_s = [t.lower() for t in s if t.isalnum()]  # get rid of non alnum, then make lower case
+#         if len(alnum_s) == 0:
+#             return True
+#         for i in range(len(alnum_s) // 2):
+#             if alnum_s[i] != alnum_s[-i-1]:
+#                 return False
+#         return True
 
 
 class Test(unittest.TestCase):
