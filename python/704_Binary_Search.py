@@ -1,9 +1,11 @@
 import unittest
 
+
 class Solution(object):
     """
     xx
     """
+
     # def binarySearch(self, nums, start, target):
     #     left, right = start, len(nums) - 1
     #     while left < right:
@@ -14,7 +16,6 @@ class Solution(object):
     #         else:
     #             right = mid - 1
     #     return left
-
 
     # dichotomy
     def search(self, nums, target):
@@ -27,17 +28,17 @@ class Solution(object):
         # # take this out, avoid inf loop
         # if len(nums) == 1:
         #     return idx
-        while len(nums)>=1:
-            mid_idx = len(nums)//2
+        while len(nums) >= 1:
+            mid_idx = len(nums) // 2
             if mid_idx > 0:
                 mid = nums[mid_idx]
                 if mid == target:
-                    return len(nums)//2 + idx
+                    return len(nums) // 2 + idx
                 elif mid > target:
-                    nums = nums[:len(nums)//2]
+                    nums = nums[:len(nums) // 2]
                 elif mid < target:
-                    idx += len(nums)//2
-                    nums = nums[len(nums)//2:]
+                    idx += len(nums) // 2
+                    nums = nums[len(nums) // 2:]
                 else:
                     raise ValueError("Unexpected case")
             else:
@@ -46,6 +47,19 @@ class Solution(object):
                 else:
                     return -1
         # if go through the loop haven't return, then means no target found
+        return -1
+
+    # double ptr
+    def search2(self, nums, target):
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid_idx = l + ((r-l) // 2)
+            if nums[mid_idx] > target:
+                r = mid_idx - 1
+            elif nums[mid_idx] < target:
+                l = mid_idx + 1
+            else:
+                return mid_idx
         return -1
 
 
@@ -58,24 +72,25 @@ class Test(unittest.TestCase):
         2,
         [5],
         5,
-        [-1,0,3,5,9,12],
+        [-1, 0, 3, 5, 9, 12],
         9,
-        [-1,0,3,5,9,12],
+        [-1, 0, 3, 5, 9, 12],
         2
-        ]
+    ]
     test_output = [0, 0, 4, -1]
-    test_functions = [Solution().search]
+    test_functions = [Solution().search, Solution().search2]
 
     def test_search(self):
         """
         binary search
         """
-        for i in range(int(len(self.test_cases)/2)):
-            nums, target = self.test_cases[2*i], self.test_cases[2*i+1]
+        for i in range(int(len(self.test_cases) / 2)):
+            nums, target = self.test_cases[2 * i], self.test_cases[2 * i + 1]
             for test_func in self.test_functions:
                 test_result = test_func(nums, target)
                 print(test_result)
                 self.assertEqual(test_result, self.test_output[i])
+
 
 if __name__ == '__main__':
     unittest.main()

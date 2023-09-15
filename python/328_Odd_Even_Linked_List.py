@@ -1,10 +1,12 @@
 import unittest
 
+
 # Definition for singly-linked list.
 class ListNode(object):
     """ 
     dd
     """
+
     def __init__(self, x):
         self.val = x
         self.next = None  # for unknown next ptr, set it to None
@@ -16,6 +18,7 @@ class Solution(object):
     """
     dd
     """
+
     def oddEvenList(self, head):
         """ Process the head of the target linked list
         :type head: ListNode, pointing to the head of the processed linked list
@@ -28,9 +31,9 @@ class Solution(object):
             return head
         even_head = even = head.next
         while odd.next is not None and even.next is not None:
-            odd.next = even.next # the new come even.next is a odd, so can be the odd next for the odd to be
+            odd.next = even.next  # the new come even.next is a odd, so can be the odd next for the odd to be
             odd = odd.next  # update odd to be
-            even.next = odd.next # the new come odd.next is a even
+            even.next = odd.next  # the new come odd.next is a even
             even = even.next  # update even
         odd.next = even_head  # end of the odd, link to the even head
         return head
@@ -47,6 +50,7 @@ class Solution(object):
     #     x.append(head.val)
     #     return x[0::2] + x[1::2]
 
+
 # below two funcs are all for feeding test data correctly and arange the output in list correctly
 def create_linked_list(arr):
     dummy = ListNode(0)
@@ -56,6 +60,7 @@ def create_linked_list(arr):
         ptr = ptr.next
     return dummy.next
 
+
 def linked_list_to_list(head):
     arr = []
     while head:
@@ -63,16 +68,18 @@ def linked_list_to_list(head):
         head = head.next
     return arr
 
+
 def test_example(arr, func):
     head = create_linked_list(arr)
     result = linked_list_to_list(func(head=head))
     return result
 
+
 class Test(unittest.TestCase):
     """
     """
     test_cases = [
-        ([2,1,3,5,6,4,7], [2,3,6,7,1,5,4])
+        ([2, 1, 3, 5, 6, 4, 7], [2, 3, 6, 7, 1, 5, 4])
     ]
     test_listnode_cases = []
     test_functions = [Solution().oddEvenList]
