@@ -16,8 +16,10 @@ class Solution(object):
 
         # init
         rows, cols = len(dungeon), len(dungeon[0])
-        # allocate mem to dp
-        dp = [[0] * cols for _ in range(rows)]
+        # # allocate mem to dp
+        # dp = [[0] * cols for _ in range(rows)]
+        # or simply
+        dp = [0] * cols * rows
         # handle the lower right corner cases
         dp[-1][-1] = max(1, 1 - dungeon[-1][-1])
         # handle the last row, and the last col
