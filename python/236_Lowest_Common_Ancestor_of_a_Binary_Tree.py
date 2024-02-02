@@ -28,7 +28,7 @@ class Solution(object):
     #     return self.ans
 
     def lowestCommonAncestor(self, root, p, q):
-        """
+        """ using linked list? or just list?
         :type root: TreeNode
         :type p: TreeNode
         :type q: TreeNode

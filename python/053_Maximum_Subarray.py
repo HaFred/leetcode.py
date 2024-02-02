@@ -1,3 +1,6 @@
+"""This question is supposed to be a greedy problem. But it can be done with dp for sure."""
+
+
 class Solution(object):
     # def maxSubArray(self, nums):
     #     return self.maxSubArrayHelper(nums, 0, len(nums) - 1)
@@ -46,3 +49,22 @@ class Solution(object):
             maxEndingHere = max(maxEndingHere + nums[i], nums[i])
             maxSofFar = max(maxEndingHere, maxSofFar)
         return maxSofFar
+
+    def max_sub_dp(self, nums):
+        """
+        dp1: dp arr stores the max sum of its subarray
+        dp2: dp[i]=max(dp[i]-1 + num[i], num[i]). But the result is not the final dp arr, but the max(dp).
+        dp3: dp[0]=num[0], needs to init len(nums) space for dp arr
+        dp4: for loop starts with dp[1], and increasing
+        dp5: when nums = [5,4,-1,7,8], the elements sum are all positive therefore can be all
+        """
+        dp = [0] * len(nums)
+        for i in range(1, len(nums)):
+            dp[i] = max(dp[i - 1] + nums[i], nums[i])
+        return max(dp)
+
+
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+s = Solution()
+out = s.max_sub_dp(nums)
+print(out)

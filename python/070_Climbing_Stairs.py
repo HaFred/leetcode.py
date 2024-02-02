@@ -27,7 +27,7 @@ class Solution(object):
         DP1. dp arr is the current idx's #different_methods
         DP2. state transferring: dp[i] = dp[i-1] + dp[i-2]
         DP3. init at the beginning is ok
-        DP4. in each for loop, assign dp[i]
+        DP4. in each for loop, assign dp[i], with increasing i
         DP5. dp == [1, 1, 2, 3] or if just two ele dp == [1,2] when i==1
         """
         dp = [1] * 2  # for fibonacci just needs to maintain two ele in dp arr, this two init as 1 and 1 representing 0 and 1st step
