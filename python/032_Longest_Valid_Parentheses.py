@@ -58,14 +58,34 @@ class Solution(object):
 
         if len(s) < 2: return 0
         n = len(s)
-        for i in range(n if n%2==0 else n-1, 0, -2):  # start, stop, step
-            for j in range(n-i+1): # on the left hand side idx
-                if is_valid(s[j:j+i]):
+        for i in range(n if n % 2 == 0 else n - 1, 0, -2):  # start, stop, step
+            for j in range(n - i + 1):  # on the left hand side idx
+                if is_valid(s[j:j + i]):
                     return i  # found the max valid substring
-        return 0 # if fail to find valid, return 0
+        return 0  # if fail to find valid, return 0
+
+    def fred_dp(self, s):
+        """
+         dp1. it records the longest num of the str. init as n size
+         dp2. state transferring:
+            1. get in the loop
+            IF str[i] == ')', and IF str[i-dp[i-1]-1] == '(',
+            then it's a full parenthesis thus dp[i]=2;
+            2. consider str[i-dp[i-1]-1:i] and aggregate (only IF this idx>=0). Now dp[i]=2 + dp[i-1];
+            3. for str[0:i-dp[i-1]-1]. Now dp[i] = 2 + dp[i-1] + dp[i-dp[i-1]-2]
+         """
+        n = len(s)
+        if n == 0: return 0
+        dp = [0] * n
+        for i in range(len(s)):
+            if s[i] == ')' and s[i-dp[i-1]-1] == '(' and i-dp[i-1]-1>=0:
+                dp[i] = 2 + dp[i-1] + dp[i-dp[i-1]-2]
+        return max(dp)
+
 
 if __name__ == '__main__':
     s = Solution()
     # print s.longestValidParentheses(")(((((()())()()))()(()))(")
     # print(s.longestValidParentheses(')()())'))
-    print(s.fred_brute_force(')()())'))
+    # print(s.fred_brute_force(')()())'))
+    print(s.fred_dp(')()())'))
