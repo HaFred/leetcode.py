@@ -44,8 +44,10 @@ class Solution(object):
         return max(tep, res)
 
     def fred_brute_force(self, s):
+        """tc: O(n^3)"""
         def is_valid(x):
-            """A sub func to determine the current substr is valid for parenthesis construction or not, in outer descending iterations of substrings"""
+            """A sub func to determine the current substr is valid for parenthesis construction or not,
+            in outer descending iterations of substrings """
             stack = []
             for i in range(len(x)):
                 if x[i] == '(':
@@ -54,7 +56,8 @@ class Solution(object):
                     stack.pop()
                 else:  # if stack[-1] == ')'
                     return False  # coz it's gonna be a parenthesis with a lonely ')' here
-            return stack == []  # if there is remaining symbol in stacks meaning that current string contains invalid ( or ), thus False. Only empty list true
+            return stack == []  # if there is remaining symbol in stacks meaning that current string contains invalid
+            # ( or ), thus False. Only empty list true
 
         if len(s) < 2: return 0
         n = len(s)
@@ -65,7 +68,7 @@ class Solution(object):
         return 0  # if fail to find valid, return 0
 
     def fred_dp(self, s):
-        """
+        """ tc: O(n)
          dp1. it records the longest num of the str. init as n size
          dp2. state transferring:
             1. get in the loop
@@ -78,9 +81,15 @@ class Solution(object):
         if n == 0: return 0
         dp = [0] * n
         for i in range(len(s)):
-            if s[i] == ')' and s[i-dp[i-1]-1] == '(' and i-dp[i-1]-1>=0:
-                dp[i] = 2 + dp[i-1] + dp[i-dp[i-1]-2]
+            if s[i] == ')' and s[i - dp[i - 1] - 1] == '(' and i - dp[i - 1] - 1 >= 0:
+                dp[i] = 2 + dp[i - 1] + dp[i - dp[i - 1] - 2]
         return max(dp)
+
+    def fred_stack_list(self):
+        current_len = 0
+        max_len = 0
+        stack = []  # storing the current idx that is not forming parenthesis
+        pass
 
 
 if __name__ == '__main__':
