@@ -44,4 +44,4 @@ def CE_loss_takes_targetprob(target, soft_input):
 my_prob_loss, loss_sum = CE_loss_takes_targetprob(target, input_soft)
 print('[my func: target as class prob] loss is {} from {}'.format(my_prob_loss, torch.mean(loss_sum)))
 # will be the same as following
-print('directly with target prob in ce loss: {}'.format(F.cross_entropy(input, target)))
+print('directly with target prob in ce loss: {}'.format(F.cross_entropy(input, target_class)))
