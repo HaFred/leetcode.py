@@ -39,6 +39,8 @@ def kmeans(k: int, pts):  # pts 2d arr, [n, 2]
 
     return pts_label
 
+# for vis: https://blog.csdn.net/weixin_45690272/article/details/105748829
+
 def kmeans_chinese(k, positions):
     def getDistance(pos1, pos2):
         # x1,y1,x2,y2二维数组——就是平方距离即可，也不必开根号了

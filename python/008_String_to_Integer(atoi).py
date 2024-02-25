@@ -40,4 +40,4 @@ class Solution(object):
 if __name__ == '__main__':
     # begin
     s = Solution()
-    print s.myAtoi("+-2")
+    print(s.myAtoi("+-2"))
