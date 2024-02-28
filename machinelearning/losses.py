@@ -19,6 +19,7 @@ print('with reduction, torch loss is {}, which is {}'.format(F.cross_entropy(inp
 # target = torch.randint(5, (3,), dtype=torch.int64)
 
 def CE_Loss(target, act):
+    """Input is softmax-ed, thus CE is doing softmax+log+NLLLoss for the input logit"""
     # out = torch.sum((-target * torch.log(act) - (1 - target) * torch.log(1 - act)))
     loss = torch.zeros(target.shape)
     for dim_label in range(target.shape[0]):
@@ -45,3 +46,11 @@ my_prob_loss, loss_sum = CE_loss_takes_targetprob(target, input_soft)
 print('[my func: target as class prob] loss is {} from {}'.format(my_prob_loss, torch.mean(loss_sum)))
 # will be the same as following
 print('directly with target prob in ce loss: {}'.format(F.cross_entropy(input, target_class)))
+
+""" Output:
+with reduction, torch loss is 1.286257028579712, which is tensor([1.2287, 1.3038, 1.3262])
+[my func: target as class label] loss is tensor([1.2287, 1.3038, 1.3262]) from 1.2862569093704224
+[my func: target as class prob] loss is 1.0002144575119019 from 1.0002144575119019
+directly with target prob in ce loss: 1.286257028579712
+"""
+

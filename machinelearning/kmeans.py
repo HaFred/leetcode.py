@@ -16,7 +16,7 @@ def kmeans(k: int, pts):  # pts 2d arr, [n, 2]
 
     # init each pts label
     pts_label = [0 for i in range(len(pts))]  # [n, 1]
-    label_cluster = collections.defaultdict(list)  # each key-val store the pts with the same label
+    label_cluster = collections.defaultdict(list)  # each key-val store the pts with the same label, built-in func that can easily implement a hash-map
     collections.OrderedDict
     for t in range(100):  # do 100 iterations
         # find each pt label
