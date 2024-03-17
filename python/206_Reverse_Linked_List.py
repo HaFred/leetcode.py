@@ -56,6 +56,9 @@ class Solution(object):
     #     while curr is not None:
     #         next_temp = curr.next
     #         curr.next = prev
+    #         # # below two lines can also been used in a recursion like below commented
+    #         # def reverse(prev, curr):  # moving the ptrs once curr.next re-assigned
+    #         # return reverse(curr, temp)
     #         prev = curr
     #         curr = next_temp
     #     return prev
