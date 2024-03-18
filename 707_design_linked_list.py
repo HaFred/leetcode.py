@@ -12,7 +12,10 @@ class MyLinkedList:
         self.size = 0
 
     def get(self, index: int) -> int:
-        """Note that list (array) is not implemented as a Linked List on the hw for python, they have different time complexity for both insertion and query, see https://programmercarl.com/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html. Thus, no List can be used in this func here."""
+        """Note that list (array) is not implemented as a Linked List on the hw for python, they have different time
+        complexity for both insertion and query,
+        see https://programmercarl.com/%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html. Thus, no List can
+        be used in this func here. """
         # if self.the_list[index] is not None:
         #     return self.the_list[index]
         if index < 0 or index >= self.size:
