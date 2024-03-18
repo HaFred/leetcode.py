@@ -49,11 +49,11 @@ class Solution(object):
         # if go through the loop haven't return, then means no target found
         return -1
 
-    # double ptr
+    # double ptr, tc: o(log_2^N)
     def search2(self, nums, target):
         l, r = 0, len(nums) - 1
         while l <= r:
-            mid_idx = l + ((r-l) // 2)
+            mid_idx = l + ((r-l) // 2)  # halve, thus o(log_2^N)
             if nums[mid_idx] > target:
                 r = mid_idx - 1
             elif nums[mid_idx] < target:
