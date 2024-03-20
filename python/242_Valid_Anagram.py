@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class Solution(object):
     # def isAnagram(self, s, t):
     #     """
@@ -26,3 +28,24 @@ class Solution(object):
             if num != 0:
                 return False
         return True
+
+    def isAnagram_defaultdict(self, s, t):
+        if len(s) != len(t):
+            return False
+        counter = defaultdict(int)  # needs to make the default val of the dict as int 0, using dict seems not able to meet this
+        # counter = {}
+        for char in s:
+            counter[char] += 1
+        for char in t:
+            counter[char] -= 1
+        for k, v in counter.items():
+            if v != 0:
+                return False
+        return True
+
+
+sol = Solution()
+s = "anagram"
+t = "nagaram"
+out = sol.isAnagram_defaultdict(s, t)
+print(out)
