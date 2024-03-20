@@ -43,6 +43,7 @@ class Solution(object):
                 tep = 0
         return max(tep, res)
 
+    # on leetcode oj will over time
     def fred_brute_force(self, s):
         """tc: O(n^3)"""
         def is_valid(x):
@@ -61,8 +62,8 @@ class Solution(object):
 
         if len(s) < 2: return 0
         n = len(s)
-        for i in range(n if n % 2 == 0 else n - 1, 0, -2):  # start, stop, step
-            for j in range(n - i + 1):  # on the left hand side idx
+        for i in range(n if n % 2 == 0 else n - 1, 0, -1):  # start, stop, step: the window length
+            for j in range(n - i + 1):  # on the left-hand side idx, from the leftest
                 if is_valid(s[j:j + i]):
                     return i  # found the max valid substring
         return 0  # if fail to find valid, return 0
@@ -82,7 +83,7 @@ class Solution(object):
         dp = [0] * n
         for i in range(len(s)):
             if s[i] == ')' and s[i - dp[i - 1] - 1] == '(' and i - dp[i - 1] - 1 >= 0:
-                dp[i] = 2 + dp[i - 1] + dp[i - dp[i - 1] - 2]
+                dp[i] = 2 + dp[i - 1] + dp[i - dp[i - 1] - 2]  # even if i - dp[i - 1] - 1 ==0, i - dp[i - 1] - 2==-1 will not affects dp, as dp arr is init as 0
         return max(dp)
 
     def fred_stack_list(self):
@@ -97,4 +98,5 @@ if __name__ == '__main__':
     # print s.longestValidParentheses(")(((((()())()()))()(()))(")
     # print(s.longestValidParentheses(')()())'))
     # print(s.fred_brute_force(')()())'))
-    print(s.fred_dp(')()())'))
+    print(s.fred_dp("(()"))
+    # print(s.fred_dp(')()())'))

@@ -85,3 +85,56 @@ class Stack(object):
         """
         return len(self.queue1) == 0
 
+
+# todo notice that another method in python is to use deque
+class MyStack:
+
+    def __init__(self):
+        self.queue = []
+        self.current_top = 0
+
+    def push(self, x: int) -> None:
+        self.queue.append(x)
+        self.current_top = x
+
+    def pop(self, *a) -> int:
+        if len(self.queue) == 0:
+            return None
+        qsize = len(self.queue)
+        while qsize > 1:
+            self.queue.append(self.queue[0])
+            self.queue.pop(0)
+            qsize -= 1
+        result = self.queue.pop(0)
+        if self.empty():
+            self.current_top = 0
+        else:
+            self.current_top = self.queue[-1]
+        return result
+
+    def top(self, *a) -> int:
+        if self.empty() is False:
+            return self.current_top
+
+    def empty(self, *a) -> bool:
+        return len(self.queue) == 0
+
+
+# Your MyStack object will be instantiated and called as such:
+obj = MyStack()
+# obj.push(1)
+# obj.push(2)
+# param_2 = obj.pop()
+# # param_3 = obj.top()
+# param_4 = obj.empty()
+# print(param_4)
+
+# Input = ["push", "push", "pop", "top"]
+# Input2 = [[1], [2], [], []]
+Input = ["push", "push", "push", "top", "pop", "top", "pop", "top", "empty", "pop", "empty"]
+Input2 = [[1], [2], [3], [], [], [], [], [], [], [], []]
+
+for func, var in zip(Input, Input2):
+    fun = getattr(obj, func)
+    p = fun(var)
+    print(p)
