@@ -20,7 +20,7 @@ class Solution(object):
         # https://leetcode.com/articles/valid-anagram/
         if len(s) != len(t):
             return False
-        counter = [0] * 26
+        counter = [0] * 26  # an arr counter for char
         for i in range(len(s)):
             counter[ord(s[i]) - ord('a')] += 1
             counter[ord(t[i]) - ord('a')] -= 1

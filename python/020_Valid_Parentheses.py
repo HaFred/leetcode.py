@@ -38,7 +38,20 @@ class Solution:
         if len(stack) == 0:
             return True
         else:
+            return
+
+    def fred_test_two(self, head):
+        # determine whether this linked list as a circle in it
+        if head is None:
             return False
+        slow = head
+        fast = head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
 
     def isValid_stack(self, s):
         stack = []

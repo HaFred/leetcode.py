@@ -93,3 +93,83 @@ class Solution(object):
                 j = next[j]
         return -1
 
+    def detect_cycle_linked_list(self, head):
+        if head is None:
+            return False
+        slow = head
+        fast = head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+
+    def fizzBuzz(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        out = []
+        for i in range(1, n + 1):
+            if i % 3 == 0 and i % 5 == 0:
+                out.append('FizzBuzz')
+            elif i % 3 == 0:
+                out.append('Fizz')
+            elif i % 5 == 0:
+                out.append('Buzz')
+            else:
+                out.append(str(i))
+        return out
+
+    def drawingEdge(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        out = []
+        for i in range(1, n + 1):
+            if i == 1 or i == n:
+                out.append('*' * n)
+            else:
+                out.append('*' + ' ' * (n - 2) + '*')
+        return out
+
+    def getMinOperations(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 1:
+            return 0
+        if n % 2 == 0:
+            return 1 + self.getMinOperations(n // 2)
+        else:
+            return 1 + min(self.getMinOperations(n - 1), self.getMinOperations(n + 1))
+
+    def getMinOperations_dp(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        dp = [0] * (n + 1)
+        for i in range(2, n + 1):
+            dp[i] = 1 + dp[i - 1]
+            if i % 2 == 0:
+                dp[i] = min(dp[i], 1 + dp[i // 2])
+        return dp[n]
+
+    def getMinOperations_dp2(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        dp = [0] * (n + 1)
+        for i in range(2, n + 1):
+            dp[i] = 1 + dp[i - 1]
+            if i % 2 == 0:
+                dp[i] = min(dp[i], 1 + dp[i // 2])
+            if i % 3 == 0:
+                dp[i] = min(dp[i], 1 + dp[i // 3])
+        return dp[n]
+
