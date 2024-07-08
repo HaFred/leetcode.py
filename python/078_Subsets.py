@@ -1,5 +1,9 @@
+"""backtracking/recursion"""
+
+
 class Solution(object):
-    # def subsets(self, nums):
+    # backtracking
+    # def subsets_bt(self, nums):
     #     """
     #     :type nums: List[int]
     #     :rtype: List[List[int]]
@@ -7,11 +11,14 @@ class Solution(object):
     #     nums.sort()
     #     res = [[]]
     #     res.append(list(nums))
+    #     self.counter_fred = 0
     #     for ls in range(1, len(nums)):
     #         self.get_subsets(res, nums, [], ls, 0)
+    #     print(f'counter out: {self.counter_fred}')
     #     return res
     #
     # def get_subsets(self, res, nums, curr_set, ls, index):
+    #     self.counter_fred += 1
     #     # recursive
     #     if ls == 0:
     #         res.append(list(curr_set))
@@ -20,6 +27,24 @@ class Solution(object):
     #         self.get_subsets(res, nums, curr_set, ls - 1, index + 1)
     #         curr_set.pop()
     #         self.get_subsets(res, nums, curr_set, ls, index + 1)
+
+    def subsets_bt(self, nums):
+        result = []
+        path = []
+        self.counter = 0
+        self.backtracking(nums, 0, path, result)
+        print(self.counter)
+        return result
+
+    def backtracking(self, nums, startIndex, current_set, result):
+        self.counter += 1
+        result.append(current_set[:])  # 收集子集，要放在终止添加的上面，否则会漏掉自己
+        # if startIndex >= len(nums):  # 终止条件可以不加
+        #     return
+        for i in range(startIndex, len(nums)):
+            current_set.append(nums[i])
+            self.backtracking(nums, i + 1, current_set, result)
+            current_set.pop()  # backtracking, go on to explore other combination to form subset under current hierachy in the tree
 
     # def subsets(self, nums):
     #     # https://leetcode.com/discuss/89343/c-8-lines-bit-operation
@@ -51,8 +76,6 @@ class Solution(object):
         return res
 
 
-
-
 if __name__ == "__main__":
     s = Solution()
-    print s.subsets([1,2,3])
+    print(s.subsets_bt([1, 2, 3]))

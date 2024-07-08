@@ -55,7 +55,8 @@ class Solution(object):
     #                 index_pairs[sum] = [(i,j)]
     #     return combos.keys()
 
+
 if __name__ == '__main__':
     # begin
     s = Solution()
-    print s.fourSum([0, 0, 0, 0], 0)
+    print(s.fourSum([0, 0, 0, 0], 0))

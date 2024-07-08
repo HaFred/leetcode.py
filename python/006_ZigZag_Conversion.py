@@ -37,7 +37,7 @@ class Solution(object):
         # calculate period
         p = 2 * (numRows - 1)
         result = [""] * numRows
-        for i in xrange(len(s)):
+        for i in range(len(s)):
             floor = i % p
             if floor >= p//2:
                 floor = p - floor
@@ -48,6 +48,6 @@ class Solution(object):
 if __name__ == '__main__':
     # begin
     s = Solution()
-    print s.convert("PAYPALISHIRING", 3)
+    print(s.convert("PAYPALISHIRING", 3))
 
 

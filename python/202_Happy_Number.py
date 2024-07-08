@@ -2,6 +2,7 @@ from collections import defaultdict
 
 
 class Solution(object):
+    """log(n), base of 10 maybe"""
     def isHappy(self, n):
         """
         :type n: int
